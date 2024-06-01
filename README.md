@@ -1,1 +1,1 @@
-# Social-Networking-System
+# EMAIL_VERIFICATION_SYSTEM-System
