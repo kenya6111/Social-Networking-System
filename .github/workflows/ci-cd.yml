@@ -24,8 +24,8 @@ jobs:
       - name: Deploy to EC2
         uses: easingthemes/ssh-deploy@v2.1.5
         with:
-          remote_host: ${{ 172.31.24.153 }}
-          remote_user: ${{ ubuntu }}
+          remote_host: "172.31.24.153"
+          remote_user: "ubuntu"
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "-rltgoDzvO --delete --exclude 'public/index.php' --exclude 'Database/MySQLWrapper.php'"
           SOURCE: "./"
