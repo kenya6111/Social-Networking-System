@@ -8,7 +8,7 @@ abstract class AbstractSeeder implements Seeder {
     protected MySQLWrapper $conn;
     protected ?string $tableName = null;
 
-    // テーブルカラムは、'data_type' と 'column_name' を含む連想配列の配列です2024/06/02　　  　     。
+    // テーブルカラムは、'data_type' と 'column_name' を含む連想配列の配列です2024/06/02　　  　　     。
     protected array $tableColumns = [];
 
     // 使用可能なカラムのタイプです。これらはバリデーションチェックとbind_param()のために使用されます。
