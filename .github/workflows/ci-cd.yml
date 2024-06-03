@@ -21,12 +21,19 @@ jobs:
       - name: Install dependencies
         run: composer install
 
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 54.227.112.147 >> ~/.ssh/known_hosts
+
       - name: Deploy to EC2
         uses: easingthemes/ssh-deploy@v2.1.5
         with:
           remote_host: "54.227.112.147"
           remote_user: "ubuntu"
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rltgoDzvO --delete --exclude 'public/index.php' --exclude 'Database/MySQLWrapper.php'"
-          SOURCE: "./"
-          TARGET: "ubuntu@ip-172-31-24-153:/home/ubuntu/web"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          args: "-rltgoDzvO --delete --exclude 'public/index.php' --exclude 'Database/MySQLWrapper.php'"
+          source: "./"
+          target: "/home/ubuntu/web"
