@@ -385,7 +385,9 @@ return [
     'homepage' => Route::create('homepage', function (): HTTPRenderer {
         $postDao = DAOFactory::getPostDAO();
         $posts = $postDao->getPostsOrderedByLikesDesc();
-        return new HTMLRenderer('page/home',['posts'=>$posts,'loginUserId' => $_SESSION['user_id']]);
+        $posts2 = $postDao->getPostsOrderedByLikesDesc($_SESSION['user_id']);
+        
+        return new HTMLRenderer('page/home',['posts'=>$posts,'posts2' => $posts2, 'loginUserId' => $_SESSION['user_id']]);
     })->setMiddleware(['auth']),
     'form/post' => Route::create('form/post', function (): HTTPRenderer {
 

@@ -13,4 +13,5 @@
     <title>Social Networking Service</title>
 </head>
 <body>
-<main class="container mt-5 mb-5">
+<main class="container mt-5 mb-5 ">
+

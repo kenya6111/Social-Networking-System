@@ -96,6 +96,36 @@ class PostDAOImpl implements PostDAO
         if ($result === null) return null;
         return $result;
     }
+
+    private function getRawOfFollowers(int $id): ?array{
+        $mysqli = DatabaseManager::getMysqliConnection();
+
+        $query = "SELECT posts.*,
+                    COUNT(posts.post_id) AS like_count,
+                    users.username,
+                    users.id
+                FROM posts
+                LEFT JOIN users
+                ON posts.user_id= users.id
+                LEFT JOIN likes
+                ON posts.post_id= likes.post_id
+                LEFT JOIN follows f
+                ON
+	                posts.user_id = f.follower_id
+                WHERE
+	                f.follower_id = $id
+                GROUP BY 
+                posts.post_id,users.username,users.id,f.followed_id
+                ORDER BY
+                like_count DESC
+                LIMIT 20;";
+
+        $result = $mysqli->query($query)->fetch_all(MYSQLI_ASSOC) ?? null;
+
+        if ($result === null) return null;
+        return $result;
+    }
+
     public function getAllRaw(): ?array{
         $mysqli = DatabaseManager::getMysqliConnection();
 
@@ -193,6 +223,20 @@ class PostDAOImpl implements PostDAO
     public function getPostsOrderedByLikesDesc(): ?array
     {
         $postsRaw = $this->getRawOrderedByLikesDesc();
+        if($postsRaw === null) return null;
+
+        // $posts=[];
+        // foreach($postsRaw as $postRaw){ 
+        //     array_push($posts,$this->rawDataToPost($postRaw));
+        // }
+
+        return $postsRaw;
+    }
+
+
+    public function getPostsOfFollowers(int $id): ?array
+    {
+        $postsRaw = $this->getRawOfFollowers($id);
         if($postsRaw === null) return null;
 
         // $posts=[];
