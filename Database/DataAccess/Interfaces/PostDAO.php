@@ -13,6 +13,7 @@ interface PostDAO
     public function getRawByPostId(int $id): ?array;
     public function getAllPosts(): ?array;
     public function getAllRaw(): ?array;
+    public function getPostsOfFollowers(int $id): ?array;
     // public function getByEmail(string $email): ?Post;
     // public function update(Post $user, string $password, ?string $email_confirmed_at): bool;
     // public function getHashedPasswordById(int $id): ?string;

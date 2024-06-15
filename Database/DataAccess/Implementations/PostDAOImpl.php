@@ -100,24 +100,20 @@ class PostDAOImpl implements PostDAO
     private function getRawOfFollowers(int $id): ?array{
         $mysqli = DatabaseManager::getMysqliConnection();
 
-        $query = "SELECT posts.*,
-                    COUNT(posts.post_id) AS like_count,
-                    users.username,
-                    users.id
-                FROM posts
-                LEFT JOIN users
-                ON posts.user_id= users.id
-                LEFT JOIN likes
-                ON posts.post_id= likes.post_id
-                LEFT JOIN follows f
-                ON
-	                posts.user_id = f.follower_id
-                WHERE
+        $query = "SELECT
+	                *
+                FROM
+                	posts p
+                INNER JOIN follows f 
+	            ON
 	                f.follower_id = $id
-                GROUP BY 
-                posts.post_id,users.username,users.id,f.followed_id
-                ORDER BY
-                like_count DESC
+	            AND f.followed_id = p.user_id
+                LEFT JOIN users u
+                ON
+                	p.user_id = u.id
+                LEFT JOIN likes l
+                ON
+                	p.post_id = l.post_id
                 LIMIT 20;";
 
         $result = $mysqli->query($query)->fetch_all(MYSQLI_ASSOC) ?? null;

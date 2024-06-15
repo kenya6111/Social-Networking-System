@@ -35,11 +35,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="file-upload" class="form-label"><i class="fas fa-camera"></i> 画像をアップロード</label>
-                        <input type="file" class="form-control" id="file-upload" name="file-upload">
+                        <input type="file" class="form-control file-button" id="file-upload" name="file-upload">
                     </div>
                     <div class="mb-3">
                         <label for="file-upload-movie" class="form-label"><i class="fas fa-camera"></i> 動画をアップロード</label>
-                        <input type="file" class="form-control" id="file-upload-movie" name="file-upload-movie">
+                        <input type="file" class="form-control file-button" id="file-upload-movie" name="file-upload-movie">
                     </div>
                     <button type="submit" class="btn btn-primary float-end">ポストする</button>
                 </form>
@@ -209,6 +209,15 @@
 .btn-color{
     background-color: rgb(26, 145, 218, 1);
 
+}
+.file-button::file-selector-button {
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
+  border: 0;
+  border-radius: 10em;
+  padding: 8px 16px;
+  text-align: center;
 }
 </style>
 <script src="/js/home.js"></script>
