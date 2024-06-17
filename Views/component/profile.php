@@ -149,9 +149,14 @@ $dummyposts=[
                 <ul id ="list-group" class="list-group list-unstyled">
                     <?php foreach ($posts as $post): ?>
                         <li class=" post border-top pt-2 pb-2">
-                            <div class="d-flex">
-                                <span class="material-symbols-outlined ms-2 fs-1">account_circle</span>
-                                <p class="ms-3 pt-2"><?=htmlspecialchars($user['username']) ?></p>
+                            <div class="d-flex justify-content-start">
+                                <div class="profile-container rounded-circle overflow-hidden">
+                                    <?php if ($user['profile_image'] != null ):?>
+                                        <img src=" <?= "/uploads/".$user['profile_image'] ?>" class="img-fluid" alt="" height="10" >
+                                    <?php else: ?>
+                                        <span class="material-symbols-outlined mt-4 fs-1">account_circle</span>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                             <div class="mx-5">
                                 <p> <?= htmlspecialchars($post->getMessage()) ?> </p>
@@ -238,9 +243,6 @@ $dummyposts=[
             height: 130px;
         }
 
-        .profile-image {
-            width: 90%;
-            height: 90%;
-            object-fit: cover;
-        }
+        /*  */
+
 </style>

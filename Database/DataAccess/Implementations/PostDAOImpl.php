@@ -79,7 +79,8 @@ class PostDAOImpl implements PostDAO
         $query = "SELECT posts.*,
                     COUNT(posts.post_id) AS like_count,
                     users.username,
-                    users.id
+                    users.id,
+                    users.profile_image
                 FROM posts
                 LEFT JOIN users
                 ON posts.user_id= users.id

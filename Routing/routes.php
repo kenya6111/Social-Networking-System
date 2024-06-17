@@ -384,10 +384,12 @@ return [
 
     'homepage' => Route::create('homepage', function (): HTTPRenderer {
         $postDao = DAOFactory::getPostDAO();
+        $userDao = DAOFactory::getUserDAO();
         $posts = $postDao->getPostsOrderedByLikesDesc();
         $posts2 = $postDao->getPostsOfFollowers($_SESSION['user_id']);
+        $user = $userDao->getById2($_SESSION['user_id']);
         
-        return new HTMLRenderer('page/home',['posts'=>$posts,'posts2' => $posts2, 'loginUserId' => $_SESSION['user_id']]);
+        return new HTMLRenderer('page/home',['posts'=>$posts,'posts2' => $posts2, 'loginUserId' => $_SESSION['user_id'],'user' => $user]);
     })->setMiddleware(['auth']),
     'form/post' => Route::create('form/post', function (): HTTPRenderer {
 

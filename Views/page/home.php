@@ -2,19 +2,26 @@
     <div class="col-2">
         <div>
             <a href="/profile?user_id=<?= htmlspecialchars($loginUserId);?>">
-                <span class="material-symbols-outlined ms-2 fs-1">account_circle</span>
+                <div class="profile-container rounded-circle overflow-hidden">
+                     <?php if ($user['profile_image'] != null ):?>
+                        <img src=" <?= "/uploads/".$user['profile_image'] ?>" class="img-fluid" alt="">
+                    <?php else: ?>
+                        <span class="material-symbols-outlined mt-4 fs-1">account_circle</span>
+                    <?php endif; ?>
+                    <!-- <span class="material-symbols-outlined ms-2 fs-1">account_circle</span> -->
+                </div>
             </a>
             <h5 class="ms-3 pt-2"><?=htmlspecialchars($post['username']) ?></h5>    
         </div>
             <ul class="navbar-nav">
-                <li class="nav-item border text-center rounded-pill mb-3 shadow btn-color">
-                    <a class="nav-link text-light" href="/homepage">home</a>
+                <li class="nav-item  text-center  ">
+                    <a class="nav-link text-body fs-4 d-flex align-items-center justify-content-start" href="/homepage"><i class="bi bi-house me-4 fs-2"></i>home</a>
                 </li>
-                <li class="nav-item border text-center rounded-pill mb-3 shadow btn-color">
-                    <a class="nav-link text-light" href="/notice">notice</a>
+                <li class="nav-item  text-center ">
+                    <a class="nav-link text-body fs-4 d-flex align-items-center justify-content-start" href="/notice"><i class="bi bi-bell  me-4 fs-2"></i>notice</a>
                 </li>
-                <li class="nav-item  border  text-center rounded-pill mb-3 shadow btn-color">
-                    <a class="nav-link text-light" href="/message">message</a>
+                <li class="nav-item    text-center  ">
+                    <a class="nav-link text-body fs-4 d-flex align-items-center justify-content-start" href="/message"><i class="bi bi-envelope me-4 fs-2"></i>message</a>
                 </li>
             </ul>
         
@@ -55,11 +62,20 @@
                         <input id="user_id" type="hidden" name="user_id" value="<?= $post['user_id']?>">
                         <?php $modalId = 'exampleModal' . $post['id']; ?>
                         <li class=" post border-top pt-2 pb-2 clickable-post" data-url="/post?post_id=<?= $post['post_id'];?>">
-                                <div class="d-flex">
+                                
+                                <div class="d-flex justify-content-start">
                                     <a href="/profile?user_id=<?= $post['id'];?>">
-                                        <span class="material-symbols-outlined ms-2 fs-1">account_circle</span>
+                                        <!-- <span class="material-symbols-outlined ms-2 fs-1">account_circle</span> -->
+                                        <div class="profile-container rounded-circle overflow-hidden">
+                                            <?php if ($post['profile_image'] != null ):?>
+                                                <img src=" <?= "/uploads/".$post['profile_image'] ?>" class="img-fluid" alt=""   width="50" height="50">
+                                            <?php else: ?>
+                                                <span class="material-symbols-outlined mt-4 fs-1">account_circle</span>
+                                            <?php endif; ?>
+                                        </div>
                                     </a>
                                     <h5 class="ms-3 pt-2"><?=htmlspecialchars($post['username']) ?></h5>
+                                    
                                 </div>
                                 <div class="mx-5">
                                     <p> <?= htmlspecialchars($post['message']) ?> </p>
@@ -203,13 +219,8 @@
     </div>
 </div>
 <style>
-.tf-btn:hover{
-    background-color: rgba(249,249,249,1);
-}
-.btn-color{
-    background-color: rgb(26, 145, 218, 1);
 
-}
+
 .file-button::file-selector-button {
   font-weight: bold;
   color: white;
