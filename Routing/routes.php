@@ -37,7 +37,7 @@ return [
             Authenticate::authenticate($validatedData['email'], $validatedData['password']);
 
             FlashData::setFlashData('success', 'Logged in successfully.');
-            return new RedirectRenderer('update/part');
+            return new RedirectRenderer('homepage');
         } catch (AuthenticationFailureException $e) {
             error_log($e->getMessage());
 

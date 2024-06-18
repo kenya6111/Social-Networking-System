@@ -26,9 +26,9 @@
             </ul>
         
     </div>
-    <div class="col-8  d-flex flex-column justify-content-center border ">
+    <div class="col-8  d-flex flex-column justify-content-center  ">
         <!-- トレンドorフォロワー-->
-        <div class="d-flex border-bottom w-100" role="group" aria-label="Basic example">
+        <div class="d-flex  w-100" role="group" aria-label="Basic example">
             <button type="button" class="tf-btn btn flex-fill" id="trend-btn">Trend</button>
             <button type="button" class="tf-btn btn flex-fill" id="follow-btn">Follower</button>
         </div>
@@ -40,15 +40,23 @@
                     <div class="mb-3">
                         <textarea class="form-control" name="text" placeholder="write something here " rows="3"></textarea>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="file-upload" class="form-label"><i class="fas fa-camera"></i> 画像をアップロード</label>
                         <input type="file" class="form-control file-button" id="file-upload" name="file-upload">
-                    </div>
-                    <div class="mb-3">
+                    </div> -->
+                    <!-- <div class="mb-3">
                         <label for="file-upload-movie" class="form-label"><i class="fas fa-camera"></i> 動画をアップロード</label>
                         <input type="file" class="form-control file-button" id="file-upload-movie" name="file-upload-movie">
-                    </div>
-                    <button type="submit" class="btn btn-primary float-end">ポストする</button>
+                    </div> -->
+                    <label for="file-upload" class="btn text-primary me-2">
+                                <i class="bi bi-camera fs-3"></i>
+                                <input type="file" class="d-none" id="file-upload" name="file-upload">
+                    </label>
+                    <label for="file-upload-movie" class="btn text-primary me-2">
+                                <i class="bi bi-camera-video fs-3"></i>
+                                <input type="file" class="d-none" id="file-upload-movie" name="file-upload-movie">
+                    </label>
+                    <button type="submit" class="btn btn-primary float-end rounded-pill">ポストする</button>
                 </form>
             </div>
         </div>
@@ -149,7 +157,14 @@
                         <li class=" post border-top pt-2 pb-2 clickable-post" data-url="/post?post_id=<?= $post['post_id'];?>">
                                 <div class="d-flex">
                                     <a href="/profile?user_id=<?= $post['id'];?>">
-                                        <span class="material-symbols-outlined ms-2 fs-1">account_circle</span>
+                                        <!-- <span class="material-symbols-outlined ms-2 fs-1">account_circle</span> -->
+                                        <div class="profile-container rounded-circle overflow-hidden">
+                                            <?php if ($post['profile_image'] != null ):?>
+                                                <img src=" <?= "/uploads/".$post['profile_image'] ?>" class="img-fluid" alt=""   width="50" height="50">
+                                            <?php else: ?>
+                                                <span class="material-symbols-outlined mt-4 fs-1">account_circle</span>
+                                            <?php endif; ?>
+                                        </div>
                                     </a>
                                     <h5 class="ms-3 pt-2"><?=htmlspecialchars($post['username']) ?></h5>
                                 </div>
