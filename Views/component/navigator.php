@@ -5,17 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/homepage">home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/notice">notice</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/message">message</a>
-                </li>
-            </ul>
+            
             <ul class="navbar-nav ms-auto">
                 <?php if ($user): ?>
                     <li class="nav-item">

@@ -18,6 +18,7 @@ trendButton.onclick = trendClick;
 followButton.onclick = followClick;
 
  document.getElementById('like-button-before').addEventListener('click',function(event){
+    event.stopPropagation();
     event.preventDefault();
     let post_id=document.getElementById("post_id").value
     let user_id=document.getElementById("user_id").value
@@ -47,8 +48,16 @@ followButton.onclick = followClick;
                     let likeButtonAfter=document.getElementById("like-button-after")
                     let likeButtonBefore=document.getElementById("like-button-before")
                     likeButtonAfter.classList.remove("d-none");
-                    likeButtonAfter.classList.add("d-block");
                     likeButtonBefore.classList.add("d-none");
+                    const likeCountElement = document.getElementById('like_count');
+    
+                    // 現在のカウントを取得し、整数に変換
+                    let currentCount = parseInt(likeCountElement.innerText, 10);
+                    // カウントアップ
+                    currentCount++;
+                    // 更新されたカウントを表示
+                    likeCountElement.innerText = currentCount;
+                
     
                 } else {
                     
@@ -60,6 +69,7 @@ followButton.onclick = followClick;
             });
  });
  document.getElementById('like-button-after').addEventListener('click',function(event){
+    event.stopPropagation();
     event.preventDefault();
     let post_id=document.getElementById("post_id").value
     const csrfHiddenValue = document.getElementById('csrf_token').value; // 隠しタグから値を取得
@@ -87,9 +97,16 @@ followButton.onclick = followClick;
                     let likeButtonAfter=document.getElementById("like-button-after")
                     let likeButtonBefore=document.getElementById("like-button-before")
                     likeButtonBefore.classList.remove("d-none");
-                    likeButtonBefore.classList.add("d-block");
                     likeButtonAfter.classList.add("d-none");
-                    likeButtonAfter.classList.remove("d-block");
+                    const likeCountElement = document.getElementById('like_count');
+    
+                    // 現在のカウントを取得し、整数に変換
+                    let currentCount = parseInt(likeCountElement.innerText, 10);
+                    // カウントアップ
+                    currentCount--;
+                    // 更新されたカウントを表示
+                    likeCountElement.innerText = currentCount;
+                
     
                 } else {
                     

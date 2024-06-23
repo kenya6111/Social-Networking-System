@@ -83,9 +83,9 @@ class PostDAOImpl implements PostDAO
                     users.profile_image
                 FROM posts
                 LEFT JOIN users
-                ON posts.user_id= users.id
+                ON posts.user_id = users.id
                 LEFT JOIN likes
-                ON posts.post_id= likes.post_id
+                ON posts.post_id = likes.post_id
                 GROUP BY 
                 posts.post_id,users.username,users.id
                 ORDER BY

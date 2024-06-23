@@ -101,8 +101,11 @@
                                 <div>
                                     <div class="row justify-content-end">
                                         <div class="col-3">
-                                            <div id="like-button-after" class="d-none">💗</div>
-                                            <span id="like-button-before" class="material-symbols-outlined">favorite</span><?= $post['like_count']?>
+                                            <span id="like-button-after" class="d-none">💗</span>
+                                            <span id="like-button-before" class="material-symbols-outlined">favorite</span>
+                                            <span id="like_count">
+                                                <?= $post['like_count'] ?>
+                                            </span>
                                         </div>
                                         <div class="col-3 reply-btn" >
                                             <!-- <span class="material-symbols-outlined">chat_bubble</span> -->
@@ -184,7 +187,7 @@
                                 <div>
                                     <div class="row justify-content-end">
                                         <div class="col-3">
-                                            <div id="like-button-after" class="d-none">💗</div>
+                                            <span id="like-button-after" class="d-none">💗</span>
                                             <span id="like-button-before" class="material-symbols-outlined">favorite</span><?= $post['like_count']?>
                                         </div>
                                         <div class="col-3 reply-btn" >
