@@ -66,11 +66,11 @@
                 <!-- Dynamic content for Trend should be loaded here -->
                 <ul id ="list-group" class="list-group list-unstyled">
                     <?php foreach ($posts as $post): ?>
-                        <input id="post_id" type="hidden" name="post_id" value="<?= $post['post_id']?>">
-                        <input id="user_id" type="hidden" name="user_id" value="<?= $post['user_id']?>">
-                        <?php $modalId = 'exampleModal' . $post['id']; ?>
+                        <?php $postId = $post['post_id']; ?>
                         <li class=" post border-top pt-2 pb-2 clickable-post" data-url="/post?post_id=<?= $post['post_id'];?>">
-                                
+                            <input id="post-id-<?= $postId ?>" type="hidden" name="post_id" value="<?= $post['post_id']?>">
+                            <input id="user-id-<?= $postId ?>" type="hidden" name="user_id" value="<?= $post['user_id']?>">
+                            <?php $modalId = 'exampleModal' . $post['id']; ?>
                                 <div class="d-flex justify-content-start">
                                     <a href="/profile?user_id=<?= $post['id'];?>">
                                         <!-- <span class="material-symbols-outlined ms-2 fs-1">account_circle</span> -->
@@ -101,10 +101,10 @@
                                 <div>
                                     <div class="row justify-content-end">
                                         <div class="col-3">
-                                            <span id="like-button-after" class="d-none">💗</span>
-                                            <span id="like-button-before" class="material-symbols-outlined">favorite</span>
-                                            <span id="like_count">
-                                                <?= $post['like_count'] ?>
+                                            <span id="like-button-after-<?= $postId ?>" class="d-none">💗</span>
+                                            <span id="like-button-before-<?= $postId ?>" class="material-symbols-outlined">favorite</span>
+                                            <span id="like-count-<?= $postId ?>">
+                                                <?= $post['like_count']?>
                                             </span>
                                         </div>
                                         <div class="col-3 reply-btn" >
